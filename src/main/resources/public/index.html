@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple CRM</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="usermanager.css" rel="stylesheet">
+<script src="vue.js"></script>
+
+</head>
+<body>
+	<div id="app">
+		<div class="header-bar">
+			<h1>User Manager</h1>
+			<button class="Logout" v-if="api != null" @click="logout" >logout</button>
+		</div>
+		<form class="content user-form" v-if="api == null" class="content" @submit.prevent>
+			<div class="user-fields">
+				<div>
+					<label>email</label>
+					<input v-model="loginView.email">
+				</div>
+				<div>
+					<label>password</label>
+					<input v-model="loginView.password" type="password">
+				</div>
+				<div>
+					<button @click="login">Login</button>
+				</div>
+			</div>
+		</form>
+		<div v-else class="content">
+			<form class="user-form" @submit.prevent>
+				<div class="error-message">{{currentUserView.errorMessage}}</div>
+				<div class="user-fields">
+					<div>
+						<label>email</label>
+						<input v-model="currentUserView.user.email">
+					</div>
+					<div>
+						<label>phone number</label>
+						<input v-model="currentUserView.user.phoneNumber">
+					</div>
+					<div>
+						<label>Role</label> 
+						<select v-model="currentUserView.user.userRole">
+							<option v-for="userRole in userRoles">{{userRole}}</option>
+						</select>
+					</div>
+					<div>
+						<label>Change Password</label>
+						<input type="checkbox" v-model="currentUserView.changePassword">
+					</div>
+					<div v-if="currentUserView.changePassword">
+						<label>New Password</label>
+						<input type="password" v-model="currentUserView.newPassword">
+					</div>
+				</div>
+				<div>
+					<button @click="newUser()">New User</button>
+					<button @click="saveUser()">Save User</button>
+				</div>
+			</form>
+			<hr>
+			<table class="user-table">
+				<tr>
+				<th>User</th>
+				<th>Role</th>
+				</tr>
+				<template v-for="user in users">
+					<tr @click="switchUser(user)" :class="user.id === currentUserView.user.id ? 'selected-user' : ''">
+						<td class="user-item" >{{user.email}}</td>
+						<td class="user-item" >{{user.userRole}}</td>
+						<td class="delet-user-column"><button class="delete-button" @click.stop="deleteUser(user)">Delete</button><td>
+					</tr>
+				</template>
+			</table>
+		</div>
+	</div>
+</body>
+<script src="usermanager.js"></script>
+</html>

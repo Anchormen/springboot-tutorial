@@ -1,0 +1,120 @@
+:root {
+	--main-left-padding: 16px;
+	--row-height: 32px;
+	--header-color: #114FFFE6;
+	--foreground-color: white;
+	--background-color: #cccccc;
+	--selected-color: #eeeeee;
+	--input-height: 24px;
+	--danger-color: red;
+}
+
+html, body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	background-color: var(--background-color);
+	font-family: Arial, Helvetica
+}
+
+h1 {
+	color: var(--header-color);
+}
+
+button{
+	border-style: none;
+	color: var(--foreground-color);
+	background-color: var(--header-color);
+	height: var(--input-height);
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+#app {
+	max-width: 800px;
+	margin: 16px auto 0 auto;
+	background-color: var(--foreground-color);
+	overflow: auto;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+.content {
+	padding: var(--main-left-padding);
+}
+
+.error-message{
+	font-size: 200%;
+	color: var(--danger-color);
+}
+
+.header-bar {
+	padding: var(--main-left-padding);
+	background-color: var(--header-color);
+	color: var(--foreground-color);
+	margin: 0;
+}
+
+.header-bar  h1{
+	color: var(--foreground-color);
+	margin: 0;
+	display: inline-block;
+	
+}
+
+.Logout{
+	color: var(--foreground-color);
+	float:right;
+	border: none;
+	background-color: transparent;
+	height:38px;
+}
+
+.user-table{
+	padding: 0;
+	maigin: 0;
+	border-collapse: collapse;
+	width:100%;
+}
+
+.user-table th{
+	font-weight: bold;
+	text-align: left;
+}
+
+.user-table tr{
+	border-bottom: 1px solid var(--background-color);
+}
+
+.user-table td{
+	height: var(--row-height);
+}
+
+.user-form .user-fields{
+	display: table;
+	width: 100%;
+}
+
+.user-form div{
+	display: table-row;
+}
+
+.user-form label, .user-form input, .user-form select{
+	display: table-cell;
+}
+
+.user-form label{
+	height: var(--row-height);
+}
+
+.user-form input, .user-form select{
+	width: 200px;
+}
+
+.selected-user{
+	background-color:var(--selected-color);
+}
+
+.delete-button{
+	background-color:var(--danger-color);
+}
